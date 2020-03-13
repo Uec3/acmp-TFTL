@@ -1,0 +1,20 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+int main(){
+char ur[100];
+bool chislo=0,Bukv=0,bukv=0,error=0;
+cin>>ur;
+int check;
+//cout<<strlen(ur);
+for (int i=0;i<strlen(ur);i++){
+    check = ur[i];
+    if(strlen(ur)<12){cout<<"No";error=1;break;}
+    else if(ur[i]>47 and ur[i]<58){chislo =1;}
+    else if(ur[i]>64 and ur[i]<91){Bukv =1;}
+    else if(ur[i]>96 and ur[i]<123){bukv =1;}
+}
+if(Bukv and bukv and chislo and !error ){cout<<"Yes";}
+else if(!error){cout<<"No";}
+
+}
