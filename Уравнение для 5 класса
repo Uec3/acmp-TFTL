@@ -1,0 +1,46 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){
+    char ur[5];
+    int f=0, fch=0,sch=0;
+    cin>>ur;
+    for(int i=0;i<5;i++){
+    if(ur[i]=='x'){
+    f=i;
+    //cout<<f<<endl;
+    break;
+    }
+    }
+    if(f!=4){
+    if(f==2){
+
+    fch=ur[0]-'0';
+    sch=ur[4]-'0';
+    }
+    else if(f==0){
+        fch=ur[2]-'0';
+        sch=ur[4]-'0';
+    }
+    if(ur[1]=='-'){
+    cout<<fch-sch;
+    }
+    else{
+    cout<<sch-fch;
+
+    }
+    }
+    else{
+    fch=ur[0]-'0';
+    sch=ur[2]-'0';
+    if(ur[1]=='-'){
+    cout<<fch-sch;
+    }
+    else{
+    cout<<sch+fch;
+
+    }
+    }
+    //sch=ur[4]-'0';
+   // cout<<fch<<endl<<sch;
+}
