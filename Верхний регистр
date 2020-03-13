@@ -1,0 +1,22 @@
+#include <iostream>
+#include <string>
+using namespace std;
+int main()
+{
+    char a,aa;
+    int b,bb;
+    cin>>aa;
+    b=aa;
+    if(b>96 and b<123){
+    a=b-32;
+    cout<<a;
+    }
+    else if (b>64 and b<91){
+    a=b;
+    cout<<a;
+    }
+  else{
+    a=b;
+    cout<<a;
+  }
+}
