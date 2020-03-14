@@ -1,0 +1,40 @@
+#include<iostream>
+#include<cstring>
+using namespace std;
+int main(){
+char ur[101]={0};
+int Bukv=0,bukv=0,chisl=0,size_ur=0;
+bool check=0;
+cin>>size_ur>>Bukv>>bukv>>chisl;
+for(int i=0;i<size_ur;i++){
+      check=0;
+      if(bukv>0)
+        {
+        bukv--;
+        check=1;
+        if(i%3==0){ur[i]='c';}
+        if(i%3==1){ur[i]='h';}
+        if(i%3==2){ur[i]='a';}
+        }
+        if(bukv==0 and Bukv>0 and !check){
+        Bukv--;
+        check=1;
+        if(i%3==0){ur[i]='S';}
+        if(i%3==1){ur[i]='T';}
+        if(i%3==2){ur[i]='R';}
+        }
+        if(chisl>0 and bukv==0 and Bukv==0 and !check){
+        chisl--;
+        check = 1;
+        if(i%3==0){ur[i]='1';}
+        if(i%3==1){ur[i]='2';}
+        if(i%3==2){ur[i]='3';}
+        }
+        if(chisl==0 and bukv==0 and Bukv==0 and !check){
+        if(i%3==0){ur[i]='d';}
+        if(i%3==1){ur[i]='Y';}
+        if(i%3==2){ur[i]='6';}
+        }
+        }
+cout<<ur<<endl;
+}
