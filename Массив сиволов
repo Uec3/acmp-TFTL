@@ -1,0 +1,47 @@
+#include <stdio.h>
+#include <stdlib.h>
+void SortStrings ( char *s[], int n ) // *s[] – массив указателей
+{ // n – число строк
+char *p;
+int i, j;
+for ( i = 0; i < n-1; i ++ )
+ for ( j = n-1; j > i; j -- )
+ if ( strcmp(s[j-1],s[j]) > 0 ) {
+ p = s[j]; s[j] = s[j-1]; // перестановка УКАЗАТЕЛЕЙ
+ s[j-1] = p;
+ }
+}
+int main()
+{
+
+ char s[20][22]={           "Voloshin",
+                            "Galyatkin",
+                            "Alekhine",
+                            "Baranik",
+                            "Vagina",
+                            "Kotyashov",
+                            "Markova",
+                            "Matulenko",
+                            "Morev",
+                            "Pidogina",
+                            "Rizvanov",
+                            "writen by Gubin",
+                            "Deev",
+                            "Demidov",
+                            "Derevyanko",
+                            "Kondratyev",
+                            "Slushchenkov",
+                            "Tretyakov",
+                            "Tupeyko",
+                            "Fursov",
+                            "Tsybulsky"}; // массив из 20 строк
+ char *ps[20]; // массив из 20 указателей на строки
+ int i, count=22;
+ // здесь нужно ввести строки и записать
+ // в переменную count их количество
+ for ( i = 0; i < count; i ++ ) // расставить указатели
+ ps[i] = s[i];
+ SortStrings ( ps, count ); // сортировка указателей
+ for ( i = 0; i < count; i ++ )
+ puts ( ps[i] ); // вывод через указатели
+}
