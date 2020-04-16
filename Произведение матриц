@@ -1,0 +1,24 @@
+#include<iostream>
+using namespace std;
+int main ()
+{
+int n,m,i,j,k,p;
+freopen("input.txt","r",stdin);
+cin>>n>>m>>p;
+int a[n][m],b[m][p],c[n][p];
+for(i=0;i<n;++i)
+for(j=0;j<m;++j)cin>>a[i][j];
+ 
+for(j=0;j<m;++j)
+for(k=0;k<p;++k)cin>>b[j][k];
+ 
+for(i=0;i<n;++i)
+for(k=0;k<p;++k){c[i][k]=0;
+ 
+for(j=0;j<m;++j)c[i][k]+=a[i][j]*b[j][k];}
+ 
+for(i=0;i<n;++i)
+{
+for(k=0;k<p;++k)cout<<c[i][k]<<' ';
+cout<<endl;}
+}
