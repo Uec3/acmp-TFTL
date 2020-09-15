@@ -20,3 +20,11 @@ void linear_function(int k,int b){
     circle(y/2-i,y/2+(i*k-b),1);
   }
 }
+void sqr (int a, int b , int c){
+  int xo = -b/2*a;
+  //print(xo);
+  for(int i = 0;i<x/2;i++){
+    circle(xo+i+y/2,y-(a*i*i+i*b+c)-x/2,10);
+    circle(xo-i+y/2,y-(a*i*i+i*b+c)-x/2,10);//y-(a*pow(i,2)+i*b+c)
+}
+}
