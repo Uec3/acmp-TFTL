@@ -14,3 +14,9 @@ void Axes(int x,int y){
     line(x,y/2,x-5,y/2+10);
     line(x,y/2,x-5,y/2-10);
 }
+void linear_function(int k,int b){
+  for(int i=0;i<x/2;i++){
+    circle(y/2+i,y/2-(i*k+b),1);
+    circle(y/2-i,y/2+(i*k-b),1);
+  }
+}
