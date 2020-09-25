@@ -1,3 +1,38 @@
+void setup(){
+  size(1080,1080);
+}
+int x=1080;
+int y = 1080;
+void sqr (int a, int b , int c){
+  int xo = -b/2*a;
+  int x_old=xo+y/2;
+  int y_old = y-x/2+c;
+  int x_od = x_old;
+  int y_od = y_old;
+  //print(xo);
+  for(int i = 0;i<x/2;i++){
+    line(x_old,y_old,x_old+5*i,y_old -(a*i*i+b*i+c));
+    x_old = x_old +5*i;
+    y_old = y_old -(a*i*i+b*i+c);
+    line(x_od,y_od,x_od-5*i,y_od -(a*i*i+b*i+c));
+    x_od = x_od -5*i;
+    y_od = y_od -(a*i*i+b*i+c);
+}
+}
+void linear_function(int k,int b){
+  int x_old=y/2;
+  int y_old = y-x/2;
+  int x_od = x_old;
+  int y_od = y_old;
+  for(int i=0;i<x/2;i++){
+    line(x_od,y_od,x_od-5*i,y_od+(i*k+b));
+    x_od = x_od-5*i;
+    y_od = y_od+(i*k+b);
+    line(x_old,y_old,x_old+5*i,y_old-(i*k+b));
+    x_old = x_old+5*i;
+    y_old = y_old-(i*k+b);
+  }
+}
 void Axes(int x,int y){
   line(x/2,0,x/2,y);
   line(0,y/2,x,y/2);
@@ -14,17 +49,11 @@ void Axes(int x,int y){
     line(x,y/2,x-5,y/2+10);
     line(x,y/2,x-5,y/2-10);
 }
-void linear_function(int k,int b){
-  for(int i=0;i<x/2;i++){
-    circle(y/2+i,y/2-(i*k+b),1);
-    circle(y/2-i,y/2+(i*k-b),1);
-  }
+void plot(){
+  sqr(1,0,0);
+  linear_function(5,0);
 }
-void sqr (int a, int b , int c){
-  int xo = -b/2*a;
-  //print(xo);
-  for(int i = 0;i<x/2;i++){
-    circle(xo+i+y/2,y-(a*i*i+i*b+c)-x/2,10);
-    circle(xo-i+y/2,y-(a*i*i+i*b+c)-x/2,10);//y-(a*pow(i,2)+i*b+c)
-}
+void draw(){
+  plot();
+  Axes(x,y);
 }
