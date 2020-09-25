@@ -11,26 +11,26 @@ void sqr (int a, int b , int c){
   int y_od = y_old;
   //print(xo);
   for(int i = 0;i<x/2;i++){
-    line(x_old,y_old,x_old+5*i,y_old -(a*i*i+b*i+c));
+    line(x_old,y_old,x_old+5*i,y_old -(a*i*i+b*i));
     x_old = x_old +5*i;
-    y_old = y_old -(a*i*i+b*i+c);
-    line(x_od,y_od,x_od-5*i,y_od -(a*i*i+b*i+c));
+    y_old = y_old -(a*i*i+b*i);
+    line(x_od,y_od,x_od-5*i,y_od -(a*i*i+b*i));
     x_od = x_od -5*i;
-    y_od = y_od -(a*i*i+b*i+c);
+    y_od = y_od -(a*i*i+b*i);
 }
 }
 void linear_function(int k,int b){
   int x_old=y/2;
-  int y_old = y-x/2;
+  int y_old = y-x/2-b;
   int x_od = x_old;
   int y_od = y_old;
   for(int i=0;i<x/2;i++){
-    line(x_od,y_od,x_od-5*i,y_od+(i*k+b));
+    line(x_od,y_od,x_od-5*i,y_od+(i*k));
     x_od = x_od-5*i;
-    y_od = y_od+(i*k+b);
-    line(x_old,y_old,x_old+5*i,y_old-(i*k+b));
+    y_od = y_od+(i*k);
+    line(x_old,y_old,x_old+5*i,y_old-(i*k));
     x_old = x_old+5*i;
-    y_old = y_old-(i*k+b);
+    y_old = y_old-(i*k);
   }
 }
 void Axes(int x,int y){
@@ -50,8 +50,8 @@ void Axes(int x,int y){
     line(x,y/2,x-5,y/2-10);
 }
 void plot(){
-  sqr(1,0,0);
-  linear_function(5,0);
+  sqr(1,0,100);
+  linear_function(5,100);
 }
 void draw(){
   plot();
