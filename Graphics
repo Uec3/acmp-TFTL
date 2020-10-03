@@ -1,39 +1,55 @@
+F F2;
+F F1;
 void setup(){
+  F1 = new F();
+  F2 = new F();
   size(1080,1080);
+  F1._init_(0,0,1,2);
+  F2._init_(1,0,0,1);
 }
-int x=1080;
-int y = 1080;
-void sqr (int a, int b , int c){
-  int xo = -b/2*a;
-  int x_old=xo+y/2;
-  int y_old = y-x/2+c;
-  int x_od = x_old;
-  int y_od = y_old;
-  //print(xo);
-  for(int i = 0;i<x/2;i++){
-    line(x_old,y_old,x_old+5*i,y_old -(a*i*i+b*i));
-    x_old = x_old +5*i;
-    y_old = y_old -(a*i*i+b*i);
-    line(x_od,y_od,x_od-5*i,y_od -(a*i*i+b*i));
-    x_od = x_od -5*i;
-    y_od = y_od -(a*i*i+b*i);
-}
-}
-void linear_function(int k,int b){
-  int x_old=y/2;
-  int y_old = y-x/2-b;
-  int x_od = x_old;
-  int y_od = y_old;
-  for(int i=0;i<x/2;i++){
-    line(x_od,y_od,x_od-5*i,y_od+(i*k));
-    x_od = x_od-5*i;
-    y_od = y_od+(i*k);
-    line(x_old,y_old,x_old+5*i,y_old-(i*k));
-    x_old = x_old+5*i;
-    y_old = y_old-(i*k);
+float ScreenX(float Sx){return (Sx - x/2) /10;}
+float ScreenY(float Sy){return (Sy - y/2) /10;}
+
+float x = 1080;
+float y = 1080;
+class F {
+  private
+  float k,b,a,out;
+  int type;
+  void _init_(float k0,float b0,float c0,int tp){
+    k=k0;
+    b=b0;
+    a=c0;
+    type = tp;
+  }
+  void Draw(){
+  if(type == 1){
+    float y0=0;
+    for(int i=0;i<x;i++){
+       line(i,y0,i+1,y-k*i+b);
+       y0 =y- k*i+b ;
+    }
+  }
+  if(type == 2){
+    float y0=pow(-x/2,2)-y/2;
+    for(int i=0;i<x/2;i++){
+      line((x/2)-i,y0,(x/2)-i-1,y/2-0.1*a*pow(i,2)+10);
+      line((x/2)+i,y0,(x/2)+i+1,y/2-0.1*a*pow(i,2)+10);
+      y0 = y/2-0.1*a*pow(i,2)+10;
+    }  
   }
 }
-void Axes(int x,int y){
+  float y(float xy){
+    if(type == 1){
+      out = y-(k*xy+b);
+    }
+    if(type ==2){
+    out = y/2-0.1*a*pow(x/2-xy,2)+10;
+    }
+    return out;
+  }
+}
+void Axes(float x,float y){
   line(x/2,0,x/2,y);
   line(0,y/2,x,y/2);
   for(int i = 0;i<x/20;i++){
@@ -49,11 +65,45 @@ void Axes(int x,int y){
     line(x,y/2,x-5,y/2+10);
     line(x,y/2,x-5,y/2-10);
 }
-void plot(){
-  sqr(1,0,100);
-  linear_function(5,100);
+float Solve(float a, float b, float eps){
+  float cl,fa,fc;
+  while(abs(b-a)>eps){
+    cl = (a+b)/2;
+    fa = F1.y(a)-F2.y(a);
+    fc = F1.y(cl)-F2.y(cl);
+    if(fa*fc<0){b=cl;}
+    else{a=cl;}
+  }
+  return (a+b)/2;
+  }
+
+void Plot(){
+  F2.Draw();
+  F1.Draw();
 }
+void Cross(){
+  float x0_1,x0_2,y0_1,y0_2;
+  x0_1 = Solve(0,540,0.5);
+  x0_2 = Solve(540,1080,0.5);
+  text(ScreenX(x0_1),x0_1-30,y/2+30);
+  text(ScreenX(x0_2),x0_2-30,y/2-30);
+  print("x1 = ");
+  print(ScreenX(x0_1));
+  print('\t');
+  print("y1 = ");
+  print(-ScreenY(F1.y(x0_1)));
+  print('\t');
+  print("x2 = ");
+  print(ScreenX(x0_2));
+  print('\t');
+  print("y2 = ");
+  print(-ScreenY(F1.y(x0_2)));
+  print('\n');
+}
+//int a,b,c,k,b;
 void draw(){
-  plot();
   Axes(x,y);
+  Plot();
+  Cross();
+
 }
