@@ -1,10 +1,11 @@
 F F2;
 F F1;
+float x0,x1;
 void setup(){
   F1 = new F();
   F2 = new F();
   size(1080,1080);
-  F1._init_(0,0,1,2);
+  F1._init_(0,0,0.2,2);
   F2._init_(1,0,0,1);
 }
 float ScreenX(float Sx){return (Sx - x/2) /10;}
@@ -85,6 +86,8 @@ void Cross(){
   float x0_1,x0_2,y0_1,y0_2;
   x0_1 = Solve(0,540,0.5);
   x0_2 = Solve(540,1080,0.5);
+  x0=x0_1;
+  x1=x0_2;
   text(ScreenX(x0_1),x0_1-30,y/2+30);
   text(ScreenX(x0_2),x0_2-30,y/2-30);
   print("x1 = ");
@@ -105,5 +108,11 @@ void draw(){
   Axes(x,y);
   Plot();
   Cross();
-
+  //print(x0);
+  //print('\t');
+  //print(x1);
+  for(float i = x0;i<x1;i=i+(x1-x0)/5){
+    print(i);
+    line(i,F1.y(i),i,F2.y(i));
+  }
 }
