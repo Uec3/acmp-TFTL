@@ -34,9 +34,9 @@ class F {
   if(type == 2){
     float y0=pow(-x/2,2)-y/2;
     for(int i=0;i<x/2;i++){
-      line((x/2)-i,y0,(x/2)-i-1,y/2-0.1*a*pow(i,2)+10);
-      line((x/2)+i,y0,(x/2)+i+1,y/2-0.1*a*pow(i,2)+10);
-      y0 = y/2-0.1*a*pow(i,2)+10;
+      line((x/2)-i,y0,(x/2)-i-1,y/2-0.1*a*pow(i,2)+100);
+      line((x/2)+i,y0,(x/2)+i+1,y/2-0.1*a*pow(i,2)+100);
+      y0 = y/2-0.1*a*pow(i,2)+100;
     }  
   }
 }
@@ -45,7 +45,7 @@ class F {
       out = y-(k*xy+b);
     }
     if(type ==2){
-    out = y/2-0.1*a*pow(x/2-xy,2)+10;
+    out = y/2-0.1*a*pow(x/2-xy,2)+100;
     }
     return out;
   }
@@ -83,7 +83,7 @@ void Plot(){
   F1.Draw();
 }
 void Cross(){
-  float x0_1,x0_2,y0_1,y0_2;
+  float x0_1,x0_2;
   x0_1 = Solve(0,540,0.5);
   x0_2 = Solve(540,1080,0.5);
   x0=x0_1;
@@ -95,8 +95,6 @@ void Cross(){
   textSize(16);
   text(a1,x0-250,F1.y(x0)+20);
   text(a2,x1+40,F1.y(x1)-15);  
-  //text(ScreenX(x0_1),x0_1-30,y/2+30);
-  //text(ScreenX(x0_2),x0_2-30,y/2-30);
   print("x1 = ");
   print(ScreenX(x0_1));
   print('\t');
@@ -115,7 +113,6 @@ void crossing(){
     line(i,F1.y(i),i,F2.y(i));
   }
 }
-//int a,b,c,k,b;
 void draw(){
   Axes(x,y);
   Plot();
