@@ -5,11 +5,11 @@ void setup(){
   F1 = new F();
   F2 = new F();
   size(1080,1080);
-  F1._init_(0,0,0.2,2);
+  F1._init_(0,0,0.1,2);
   F2._init_(1,0,0,1);
 }
 float ScreenX(float Sx){return (Sx - x/2) /10;}
-float ScreenY(float Sy){return (Sy - y/2) /10;}
+float ScreenY(float Sy){return (-Sy + y/2) /10;}
 
 float x = 1080;
 float y = 1080;
@@ -88,8 +88,15 @@ void Cross(){
   x0_2 = Solve(540,1080,0.5);
   x0=x0_1;
   x1=x0_2;
-  text(ScreenX(x0_1),x0_1-30,y/2+30);
-  text(ScreenX(x0_2),x0_2-30,y/2-30);
+  String a1,a2;
+  a1="[" + ScreenX(x0) + " , " + ScreenY(F1.y(x0)) + " ]";
+  a2="[" + ScreenX(x1) + " , " + ScreenY(F1.y(x1)) + " ]";
+  fill(#CD0000);
+  textSize(16);
+  text(a1,x0-250,F1.y(x0)+20);
+  text(a2,x1+40,F1.y(x1)-15);  
+  //text(ScreenX(x0_1),x0_1-30,y/2+30);
+  //text(ScreenX(x0_2),x0_2-30,y/2-30);
   print("x1 = ");
   print(ScreenX(x0_1));
   print('\t');
@@ -103,16 +110,15 @@ void Cross(){
   print(-ScreenY(F1.y(x0_2)));
   print('\n');
 }
+void crossing(){
+  for(float i = x0;i<x1;i=i+(x1-x0)/15){
+    line(i,F1.y(i),i,F2.y(i));
+  }
+}
 //int a,b,c,k,b;
 void draw(){
   Axes(x,y);
   Plot();
   Cross();
-  //print(x0);
-  //print('\t');
-  //print(x1);
-  for(float i = x0;i<x1;i=i+(x1-x0)/5){
-    print(i);
-    line(i,F1.y(i),i,F2.y(i));
-  }
+  crossing();
 }
