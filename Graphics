@@ -1,16 +1,18 @@
 F F2;
 F F1;
+//F F3;
+int nz =10;
+//F Arr[];
 float x0,x1;
 void setup(){
   F1 = new F();
   F2 = new F();
   size(1080,1080);
-  F1._init_(0,0,0.1,2);
+  F1._init_(0,0,0.2,2);
   F2._init_(1,0,0,1);
 }
 float ScreenX(float Sx){return (Sx - x/2) /10;}
 float ScreenY(float Sy){return (-Sy + y/2) /10;}
-
 float x = 1080;
 float y = 1080;
 class F {
@@ -25,27 +27,27 @@ class F {
   }
   void Draw(){
   if(type == 1){
-    float y0=0;
+    float y0=y-b;
     for(int i=0;i<x;i++){
-       line(i,y0,i+1,y-k*i+b);
-       y0 =y- k*i+b ;
+       line(i,y0,i+1,y-k*i);
+       y0 =y - k*i ;
     }
   }
   if(type == 2){
     float y0=pow(-x/2,2)-y/2;
     for(int i=0;i<x/2;i++){
-      line((x/2)-i,y0,(x/2)-i-1,y/2-0.1*a*pow(i,2)+100);
-      line((x/2)+i,y0,(x/2)+i+1,y/2-0.1*a*pow(i,2)+100);
-      y0 = y/2-0.1*a*pow(i,2)+100;
+      line((x/2)-i,y0,(x/2)-i-1,y/2-0.1*a*pow(i,2)+400);
+      line((x/2)+i,y0,(x/2)+i+1,y/2-0.1*a*pow(i,2)+400);
+      y0 = y/2-0.1*a*pow(i,2)+400;
     }  
   }
 }
   float y(float xy){
     if(type == 1){
-      out = y-(k*xy+b);
+      out = y-(k*xy);
     }
-    if(type ==2){
-    out = y/2-0.1*a*pow(x/2-xy,2)+100;
+    if(type == 2){
+    out = y/2-0.1*a*pow(x/2-xy,2)+400;
     }
     return out;
   }
@@ -94,28 +96,37 @@ void Cross(){
   fill(#CD0000);
   textSize(16);
   text(a1,x0-250,F1.y(x0)+20);
+  fill(#1B1BB3);
   text(a2,x1+40,F1.y(x1)-15);  
-  print("x1 = ");
-  print(ScreenX(x0_1));
-  print('\t');
-  print("y1 = ");
-  print(-ScreenY(F1.y(x0_1)));
-  print('\t');
-  print("x2 = ");
-  print(ScreenX(x0_2));
-  print('\t');
-  print("y2 = ");
-  print(-ScreenY(F1.y(x0_2)));
-  print('\n');
 }
 void crossing(){
   for(float i = x0;i<x1;i=i+(x1-x0)/15){
     line(i,F1.y(i),i,F2.y(i));
   }
 }
+void squre (){
+  float square = 0;
+  float h = 0.0292;
+  int counter = 0; 
+//  print(ScreenX(x0));  
+  for (float xq = ScreenX(x0);xq<ScreenX(x1)-h;xq=xq+h){
+    square = square + h*(F1.y(xq*10+x/2+h/2)-F2.y(xq*10+x/2+h/2));
+    //print((F1.y(xq*10+x/2)-F2.y(xq*10+x/2)));
+   // print('\t');
+    //rect(xq*10+x/2,F2.y(xq*10+x/2),h,F1.y(xq*10+x/2)-F2.y(xq*10+x/2));
+    
+}
+  float f = square*h;
+  String out = "S " + "= " + f;
+  text(out,50,50);
+} 
 void draw(){
+  
+ // print(ScreenX(x0));
+  //square(100,100,100);
   Axes(x,y);
   Plot();
   Cross();
   crossing();
+  squre();
 }
